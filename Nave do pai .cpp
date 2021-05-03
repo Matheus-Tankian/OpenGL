@@ -1,4 +1,3 @@
-
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -163,10 +162,14 @@ void init (void){
 	GLfloat luzDifusa[4]={0.7,0.7,0.7,1.0};		  // "cor"
 	GLfloat luzEspecular[4]={1.0, 1.0, 1.0, 1.0}; // "brilho"
 	
+	GLfloat posicaoLuz[4] = { 30.0, 50.0, 0.0, 1.0 };
+	
 	GLfloat especularidade[4]={1.0,1.0,1.0,1.0};
 	GLint especMaterial = 60;
 
  	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+ 	
+ 	glShadeModel(GL_SMOOTH);
 
 	glMaterialfv(GL_FRONT,GL_SPECULAR, especularidade);
 	
@@ -174,10 +177,20 @@ void init (void){
 
 	glLightModelfv(GL_LIGHT_MODEL_AMBIENT, luzAmbiente);
 
-	// Define os parâmetros da luz de número 0
+	
 	glLightfv(GL_LIGHT0, GL_AMBIENT, luzAmbiente);
 	glLightfv(GL_LIGHT0, GL_DIFFUSE, luzDifusa );
 	glLightfv(GL_LIGHT0, GL_SPECULAR, luzEspecular );
+	glLightfv(GL_LIGHT0, GL_POSITION, posicaoLuz);
+	
+
+	glEnable(GL_COLOR_MATERIAL);
+
+
+	glEnable(GL_LIGHTING);
+
+	
+	glEnable(GL_LIGHT0);
 	
 	glEnable(GL_DEPTH_TEST);
 
